@@ -8,6 +8,7 @@ import {
   Menu,
   Visibility,
 } from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
 
 import {logo} from '../../config/images';
 
@@ -79,7 +80,7 @@ class HeaderBar extends Component {
               <Menu.Item>
                 <Image size='mini' src={logo} />
               </Menu.Item>
-              <Menu.Item header style={{fontFamily: 'Pacifico'}}>Blogon</Menu.Item>
+              <Menu.Item header as={Link} to='/' style={{fontFamily: 'Pacifico'}}>Blogon</Menu.Item>
               <Menu.Item as='a'>Blog</Menu.Item>
               <Menu.Item as='a'>Articles</Menu.Item>
 
@@ -101,8 +102,8 @@ class HeaderBar extends Component {
                     <Dropdown.Item>List Item</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
-                <Menu.Item as='a'>Sign in</Menu.Item>
-                <Menu.Item as='a'>Sign up</Menu.Item>
+                <Menu.Item as={Link} to='/login'>Sign in</Menu.Item>
+                <Menu.Item as={Link} to='/register'>Sign up</Menu.Item>
               </Menu.Menu>
             </Container>
           </Menu>

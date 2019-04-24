@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Image, Container, Header, Icon, Button, Divider, Card, Segment } from 'semantic-ui-react';
+import { List, Image, Container, Header, Icon, Button, Divider, Segment } from 'semantic-ui-react';
 
 const PostItem = (props) => (
   <Container text>
