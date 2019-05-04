@@ -1,7 +1,9 @@
 import React from 'react';
 import { Button, Form, Icon, Message } from 'semantic-ui-react';
 import {Link} from 'react-router-dom';
-
+import {connect} from 'react-redux'
+import {setAlert} from '../../actions/alert'
+ 
 class RegisterForm extends React.Component {
   constructor(){
     super();
@@ -10,10 +12,6 @@ class RegisterForm extends React.Component {
       email: '',
       password: '',
       password2: '',
-      errors: {
-        header: 'Welcome to our site!',
-        content: 'Fill out the form below to sign-up for a new account'
-      }
     };
 
     this.onChange = this.onChange.bind(this);
@@ -24,26 +22,29 @@ class RegisterForm extends React.Component {
     this.setState({[data.name]: data.value});
   }
 
-  onSubmit(e){
+  async onSubmit(e){
     e.preventDefault();
 
-    const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2,
+    if(this.state.password !== this.state.password2){
+      this.props.setAlert('Passwords do not match', 'red');
+    } else {
+      const newUser = {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password,
+        password2: this.state.password2,
+      }
     }
-
-    console.log(newUser);
+    
   }
 
   render() {
     return(
-      <div>
+      <div style={{margin: '10em 5em 10em 5em'}}>
         <Message
           attached
-          header={this.state.errors.header}
-          content={this.state.errors.content}
+          header='Welcome to our site!'
+          content='Fill out the form below to sign-up for a new account'
         />
         <Form className='attached fluid segment' onSubmit={this.onSubmit}>
           <Form.Group widths='equal'>
@@ -91,4 +92,4 @@ class RegisterForm extends React.Component {
   }
 }
 
-export default RegisterForm;
+export default connect(null, {setAlert})(RegisterForm);
